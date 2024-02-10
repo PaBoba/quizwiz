@@ -8,14 +8,12 @@
 </head>
 <body>
     <div class="container">
-        <div id="quiz-container">
-            <h1>Quiz Title</h1>
-            <p id="question">Question goes here?</p>
-            <button id="choiceA">Option A</button>
-            <button id="choiceB">Option B</button>
-            <button id="choiceC">Option C</button>
-            <button id="choiceD">Option D</button>
-        </div>
+      <div id="quiz-container" style="display: none;">
+        <!-- Quiz questions and options will be dynamically added here -->
+        <div id="timer"></div>
+    </div>
+    
+    <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
         <div id="result-container" class="hidden">
             <h1>Quiz Over!</h1>
             <p>Your Score: <span id="score">0</span></p>
