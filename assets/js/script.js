@@ -4,6 +4,17 @@ const questions = [
     choices: ["Java Source", "JavaScript", "Java Style", "Jelly Sandwich"],
     correctAnswer: "JavaScript",
   },
+  {
+    question:
+      "What is the correct syntax for referring to an external script called 'example.js'?",
+    choices: [
+      "<script name='example.js'>",
+      "<script src='example.js'>",
+      "<script href='example.js'>",
+      "<script file='example.js'>",
+    ],
+    correctAnswer: "<script src='example.js'>",
+  },
   // Add more questions here
 ];
 
@@ -34,7 +45,7 @@ const startQuiz = () => {
     // Display choices
     const choicesList = document.createElement("ul");
     currentQuestion.choices.forEach((choice, index) => {
-      const choiceElement = document.createElement("li");
+      const choiceElement = document.createElement("button");
       choiceElement.textContent = choice;
       choiceElement.onclick = () => checkAnswer(choice);
       choicesList.appendChild(choiceElement);
@@ -50,7 +61,7 @@ const startQuiz = () => {
   document.getElementById("timer").textContent = timeLeft;
 
   timer = setInterval(() => {
-    timeLeft--;
+    // timeLeft--;
 
     // Update timer display
     document.getElementById("timer").textContent = timeLeft;
@@ -96,32 +107,47 @@ const endQuiz = () => {
   // Hide the timer element
   document.getElementById("timer").style.display = "none";
 
-  // Create a new container for the final score
   const scoreContainer = document.createElement("div");
   scoreContainer.id = "score-container";
 
-  // Display the final score
   const scoreText = document.createElement("p");
   scoreText.textContent = `Quiz Over! Your Score: ${score}`;
   scoreContainer.appendChild(scoreText);
 
-  // Allow the user to save initials (you can add this functionality)
   const initialsInput = document.createElement("input");
   initialsInput.placeholder = "Enter Initials";
   scoreContainer.appendChild(initialsInput);
 
-  // Button to submit initials (you can add this functionality)
   const submitButton = document.createElement("button");
   submitButton.textContent = "Submit";
   submitButton.onclick = () => {
-    // Handle saving initials logic
-    // For simplicity, you can alert the initials for now
-    alert(`Initials: ${initialsInput.value}`);
+    // Save score to local storage
+    saveScore(initialsInput.value, score);
+    // Display previous scores
+    displayPreviousScores();
   };
   scoreContainer.appendChild(submitButton);
 
-  // Append the score container to the quiz container
   document.getElementById("quiz-container").appendChild(scoreContainer);
+};
+
+const saveScore = (initials, score) => {
+  // Retrieve previous scores from local storage
+  const previousScores = JSON.parse(localStorage.getItem("quizScores")) || [];
+
+  // Add the current score
+  previousScores.push({ initials, score });
+
+  // Save the updated scores to local storage
+  localStorage.setItem("quizScores", JSON.stringify(previousScores));
+};
+
+const displayPreviousScores = () => {
+  // Retrieve previous scores from local storage
+  const previousScores = JSON.parse(localStorage.getItem("quizScores")) || [];
+
+  // Display previous scores (you can customize the display logic)
+  console.log("Previous Scores:", previousScores);
 };
 
 document.getElementById("start-btn").addEventListener("click", startQuiz);
