@@ -35,7 +35,7 @@ const startQuiz = () => {
     const currentQuestion = questions[currentQuestionIndex];
 
     // // Clear previous question
-    // questionContainer.innerHTML = '';
+    questionContainer.innerHTML = "";
 
     // Display current question
     const questionTextElement = document.createElement("p");
@@ -73,24 +73,23 @@ const startQuiz = () => {
       endQuiz();
     }
   }, 1000);
-};
+  const checkAnswer = (userChoice) => {
+    const currentQuestion = questions[currentQuestionIndex];
 
-const checkAnswer = (userChoice) => {
-  const currentQuestion = questions[currentQuestionIndex];
+    if (userChoice === currentQuestion.correctAnswer) {
+      score++;
+    }
 
-  if (userChoice === currentQuestion.correctAnswer) {
-    score++;
-  }
+    // Move to the next question
+    currentQuestionIndex++;
 
-  // Move to the next question
-  currentQuestionIndex++;
-
-  // Check if there are more questions
-  if (currentQuestionIndex < questions.length) {
-    displayQuestion();
-  } else {
-    endQuiz();
-  }
+    // Check if there are more questions
+    if (currentQuestionIndex < questions.length) {
+      displayQuestion();
+    } else {
+      endQuiz();
+    }
+  };
 };
 
 let quizEnded = false; // variable to track if the quiz has ended
@@ -107,47 +106,46 @@ const endQuiz = () => {
   // Hide the timer element
   document.getElementById("timer").style.display = "none";
 
+  // Clear the timer
+  clearInterval(timer);
+
+  // Hide the questions
+  document.getElementById("quiz-container").style.display = "none";
+
+  // Display the result container
+  document.getElementById("result-container").style.display = "block";
+
   const scoreContainer = document.createElement("div");
   scoreContainer.id = "score-container";
 
-  const scoreText = document.createElement("p");
-  scoreText.textContent = `Quiz Over! Your Score: ${score}`;
-  scoreContainer.appendChild(scoreText);
+  const scoreText = document.getElementById("score");
+  scoreText.textContent = `Your score: ${score}`;
 
   const initialsInput = document.createElement("input");
   initialsInput.placeholder = "Enter Initials";
-  scoreContainer.appendChild(initialsInput);
 
-  const submitButton = document.createElement("button");
-  submitButton.textContent = "Submit";
+  const saveScore = (initials, score) => {
+    // Retrieve previous scores from local storage
+    const previousScores = JSON.parse(localStorage.getItem("quizScores")) || [];
+
+    // Add the current score
+    previousScores.push({ initials, score });
+
+    // Save the updated scores to local storage
+    localStorage.setItem("quizScores", JSON.stringify(previousScores));
+  };
+
+  const submitButton = document.getElementById("save-score");
   submitButton.onclick = () => {
     // Save score to local storage
     saveScore(initialsInput.value, score);
-    // Display previous scores
-    displayPreviousScores();
+    console.log("Score saved!");
+    // Redirect to scores page
+    window.location.href = "./scores.html";
   };
   scoreContainer.appendChild(submitButton);
 
   document.getElementById("quiz-container").appendChild(scoreContainer);
-};
-
-const saveScore = (initials, score) => {
-  // Retrieve previous scores from local storage
-  const previousScores = JSON.parse(localStorage.getItem("quizScores")) || [];
-
-  // Add the current score
-  previousScores.push({ initials, score });
-
-  // Save the updated scores to local storage
-  localStorage.setItem("quizScores", JSON.stringify(previousScores));
-};
-
-const displayPreviousScores = () => {
-  // Retrieve previous scores from local storage
-  const previousScores = JSON.parse(localStorage.getItem("quizScores")) || [];
-
-  // Display previous scores (you can customize the display logic)
-  console.log("Previous Scores:", previousScores);
 };
 
 document.getElementById("start-btn").addEventListener("click", startQuiz);
