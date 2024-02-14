@@ -220,7 +220,7 @@ const endQuiz = () => {
     saveScore(initialsInput.value, score);
     console.log("Score saved!");
     // Redirect to scores page
-    // window.location.href = "./scores.html";
+    window.location.href = "./scores.html";
   });
 };
 
