@@ -24,14 +24,14 @@ let timer;
 
 const startQuiz = () => {
   // Hide start button
-  document.getElementById("start-btn").style.display = "none";
+  document.getElementById("startBtn").style.display = "none";
 
   // Display quiz container
-  document.getElementById("quiz-container").style.display = "block";
+  document.getElementById("quizContainer").style.display = "block";
 
   // Display the first question
   const displayQuestion = () => {
-    const questionContainer = document.getElementById("quiz-container");
+    const questionContainer = document.getElementById("quizContainer");
     const currentQuestion = questions[currentQuestionIndex];
 
     // // Clear previous question
@@ -110,13 +110,13 @@ const endQuiz = () => {
   clearInterval(timer);
 
   // Hide the questions
-  document.getElementById("quiz-container").style.display = "none";
+  document.getElementById("quizContainer").style.display = "none";
 
   // Display the result container
-  document.getElementById("result-container").style.display = "block";
+  document.getElementById("resultContainer").style.display = "block";
 
   const scoreContainer = document.createElement("div");
-  scoreContainer.id = "score-container";
+  scoreContainer.id = "scoreContainer";
 
   const scoreText = document.getElementById("score");
   scoreText.textContent = `Your score: ${score}`;
@@ -135,17 +135,19 @@ const endQuiz = () => {
     localStorage.setItem("quizScores", JSON.stringify(previousScores));
   };
 
-  const submitButton = document.getElementById("save-score");
-  submitButton.onclick = () => {
-    // Save score to local storage
-    saveScore(initialsInput.value, score);
-    console.log("Score saved!");
-    // Redirect to scores page
-    window.location.href = "./scores.html";
-  };
-  scoreContainer.appendChild(submitButton);
+  document.addEventListener("DOMContentLoaded", function () {
+    const submitButton = document.getElementById("saveScore");
+    submitButton.onclick = () => {
+      // Save score to local storage
+      saveScore(initialsInput.value, score);
+      console.log("Score saved!");
+      // Redirect to scores page
+      window.location.href = "./scores.html";
+    };
+    document.getElementById("scoreContainer").appendChild(submitButton);
+  });
 
-  document.getElementById("quiz-container").appendChild(scoreContainer);
+  document.getElementById("quizContainer").appendChild(scoreContainer);
 };
 
-document.getElementById("start-btn").addEventListener("click", startQuiz);
+document.getElementById("startBtn").addEventListener("click", startQuiz);
