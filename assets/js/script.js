@@ -15,6 +15,83 @@ const questions = [
     ],
     correctAnswer: "<script src='example.js'>",
   },
+  {
+    questions: "What does HTML stand for?",
+    choices: [
+      "Hyper Text Markup Language",
+      "Hyperlinks and Text Markup Language",
+      "Home Tool Markup Language",
+      "Hyper Text Makeup Language",
+    ],
+    correctAnswer: "Hyper Text Markup Language",
+  },
+  {
+    question: "What is the purpose of CSS in web development?",
+    choices: [
+      "To define the structure of a webpage",
+      "To provide interactivity on a webpage",
+      "To style and layout web content",
+      "To handle server-side logic",
+    ],
+    correctAnswer: "To style and layout web content",
+  },
+  {
+    question: "In the context of databases, what does SQL stand for?",
+    choices: [
+      "Structured Query Language",
+      "Standard Query Language",
+      "Structured Question Language",
+      "Standard Question Language",
+    ],
+    correctAnswer: "Structured Query Language",
+  },
+  {
+    question:
+      "Which data structure follows the Last In, First Out (LIFO) principle?",
+    choices: ["Queue", "Stack", "Tree", "Graph"],
+    correctAnswer: "Stack",
+  },
+  {
+    question: "What is the purpose of the 'git' version control system?",
+    choices: [
+      "To manage and track changes in code",
+      "To write and execute code",
+      "To design and style web content",
+      "To handle server-side logic",
+    ],
+    correctAnswer: "To manage and track changes in code",
+  },
+  {
+    question: "Which of the following is NOT a type of programming paradigm?",
+    choices: [
+      "Object-Oriented Programming (OOP)",
+      "Functional Programming (FP)",
+      "Physical Programming (PP)",
+      "Procedural Programming (PP)",
+    ],
+    correctAnswer: "Physical Programming (PP)",
+  },
+  {
+    question: "What is the purpose of the 'npm' package manager?",
+    choices: [
+      "To manage and install dependencies",
+      "To write and execute code",
+      "To design and style web content",
+      "To handle server-side logic",
+    ],
+    correctAnswer: "To manage and install dependencies",
+  },
+  {
+    question: "What is the purpose of the 'if' statement in programming?",
+    choices: [
+      "To define a function",
+      "To execute code based on a condition",
+      "To manage and install dependencies",
+      "To handle server-side logic",
+    ],
+    correctAnswer: "To execute code based on a condition",
+  },
+
   // Add more questions here
 ];
 
@@ -123,8 +200,7 @@ const endQuiz = () => {
   const scoreText = document.getElementById("score");
   scoreText.textContent = `Your score: ${score}`;
 
-  const initialsInput = document.createElement("input");
-  initialsInput.placeholder = "Enter Initials";
+  const initialsInput = document.getElementById("initials");
 
   const saveScore = (initials, score) => {
     // Retrieve previous scores from local storage
@@ -135,6 +211,7 @@ const endQuiz = () => {
 
     // Save the updated scores to local storage
     localStorage.setItem("quizScores", JSON.stringify(previousScores));
+    console.log({ initials, score });
     console.log("Score saved!");
   };
 
@@ -143,7 +220,7 @@ const endQuiz = () => {
     saveScore(initialsInput.value, score);
     console.log("Score saved!");
     // Redirect to scores page
-    window.location.href = "./scores.html";
+    // window.location.href = "./scores.html";
   });
 };
 
