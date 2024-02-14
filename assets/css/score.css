@@ -13,16 +13,16 @@ body {
   text-align: center;
 }
 
-#quiz-container {
+#quizContainer {
   display: block;
 }
 
-#result-container {
+#resultContainer {
   display: flex;
   align-items: center;
 }
 
-#scores-container{
+#scoresContainer{
   display: flex;
   align-items: center;
 }

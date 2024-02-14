@@ -13,7 +13,7 @@ body {
   text-align: center;
 }
 
-#quiz-container {
+#quizContainer {
   display: block;
 }
 
@@ -23,7 +23,7 @@ body {
   
 }
 
-#result-container {
+#resultContainer {
   display: none;
 }
 

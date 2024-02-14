@@ -22,6 +22,8 @@ let currentQuestionIndex = 0;
 let score = 0;
 let timer;
 
+const submitScore = document.getElementById("saveScore");
+
 const startQuiz = () => {
   // Hide start button
   document.getElementById("startBtn").style.display = "none";
@@ -118,9 +120,6 @@ const endQuiz = () => {
   // Display the result container
   document.getElementById("resultContainer").style.display = "block";
 
-  const scoreContainer = document.createElement("div");
-  scoreContainer.id = "scoreContainer";
-
   const scoreText = document.getElementById("score");
   scoreText.textContent = `Your score: ${score}`;
 
@@ -139,21 +138,13 @@ const endQuiz = () => {
     console.log("Score saved!");
   };
 
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log("does this work?");
-    console.log(submitButton);
-    const submitButton = document.getElementById("saveScore");
-    submitButton.onclick = () => {
-      // Save score to local storage
-      saveScore(initialsInput.value, score);
-      console.log("Score saved!");
-      // Redirect to scores page
-      window.location.href = "./scores.html";
-    };
-    document.getElementById("scoreContainer").appendChild(submitButton);
+  submitScore.addEventListener("click", () => {
+    // Save score to local storage
+    saveScore(initialsInput.value, score);
+    console.log("Score saved!");
+    // Redirect to scores page
+    window.location.href = "./scores.html";
   });
-
-  document.getElementById("quizContainer").appendChild(scoreContainer);
 };
 
 document.getElementById("startBtn").addEventListener("click", startQuiz);
