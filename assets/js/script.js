@@ -139,11 +139,11 @@ const startQuiz = () => {
   displayQuestion();
 
   // Set up a timer
-  let timeLeft = 2;
+  let timeLeft = 30;
   document.getElementById("timer").textContent = timeLeft;
 
   timer = setInterval(() => {
-    // timeLeft--;
+    timeLeft--;
 
     // Update timer display
     document.getElementById("timer").textContent = timeLeft;
