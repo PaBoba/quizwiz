@@ -26,6 +26,9 @@ const startQuiz = () => {
   // Hide start button
   document.getElementById("startBtn").style.display = "none";
 
+  // Hide view scores button
+  document.getElementById("scorePage").style.display = "none";
+
   // Display quiz container
   document.getElementById("quizContainer").style.display = "block";
 
@@ -133,9 +136,12 @@ const endQuiz = () => {
 
     // Save the updated scores to local storage
     localStorage.setItem("quizScores", JSON.stringify(previousScores));
+    console.log("Score saved!");
   };
 
   document.addEventListener("DOMContentLoaded", function () {
+    console.log("does this work?");
+    console.log(submitButton);
     const submitButton = document.getElementById("saveScore");
     submitButton.onclick = () => {
       // Save score to local storage

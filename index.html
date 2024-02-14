@@ -7,20 +7,25 @@
     <title>Quiz App</title>
 </head>
 <body>
+    <div id="scorePage">
+        <a href="./scores.html" class="scores-link">
+            <button id="scores-btn">View Scores</button>
+        </a>
+    </div>
     <div class="container">
     <div id="timer"></div>
-      <div id="quiz-container" style="display: none;">
+      <div id="quizContainer" style="display: none;">
         <!-- Quiz questions and options will be dynamically added here -->
         
     </div>
     
-    <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
-        <div id="result-container" class="hidden">
+    <button id="startBtn" onclick="startQuiz()">Start Quiz</button>
+        <div id="resultContainer" class="hidden">
             <h1>Quiz Over!</h1>
             <p>Your Score: <span id="score">0</span></p>
             <label for="initials">Enter Initials:</label>
             <input type="text" id="initials">
-            <button id="save-score">Save Score</button>
+            <button id="saveScore">Save Score</button>
         </div>
     </div>
     <script src="./assets/js/script.js"></script>
