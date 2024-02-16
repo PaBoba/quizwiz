@@ -27,4 +27,20 @@ The QuizWiz App is a web-based application designed to provide users with an int
 
 To get started with the Quiz App, follow these steps:
 
-1. Go to 
+1. Go to https://paboba.github.io/quizwiz/ to play the game.
+
+## How to Play
+
+To play simply answer the questions to the best of your abliities before the time runs out
+
+## Scoring
+
+You get one point for each question you answer correctly
+
+## Contributing
+
+N/A
+
+## License
+
+MIT License
